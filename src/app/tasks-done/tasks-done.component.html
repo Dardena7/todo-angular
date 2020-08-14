@@ -1,0 +1,18 @@
+<div class="container">
+    <app-navigation></app-navigation>
+    <h1>Done Tasks</h1>
+    <hr>
+    <div class="row">
+        <div class="col-12" *ngFor='let task of tasks'>
+            <div *ngIf='task.isDone'>
+                <div class="row border border-light task-container" (click)='onSelectTask(task._id)'>
+                    <div class="col-2"><img src="assets/checked.png" alt="todo image" class="rounded-circle"></div>
+                    <div class="col-3"><p class='task-name'>{{task.name}}</p></div>
+                    <div class="col-7"><p class='task-text'>{{ (task.description.length>150)? (task.description | slice:0:147)+'...':(task.description)}}</p></div>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+

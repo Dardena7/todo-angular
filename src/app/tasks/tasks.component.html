@@ -1,0 +1,41 @@
+<div class="container">
+    <app-navigation></app-navigation>
+    <h1>Todo Tasks</h1>
+    <hr>
+    <div class="row">
+        <div class="col-12">
+            <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#add-task" aria-expanded="false" aria-controls="add-task">
+                Add a new task
+            </button>
+            <div class="collapse" id="add-task">
+                <form (ngSubmit)='onSubmit(form)' #form='ngForm'>
+                    <div class="form-group">
+                        <label for="name"><span class='label'>Task Name</span>  (Must not be empty & Max 20 characters)</label>
+                        <input type="name" class="form-control" name="name" id="name" ngModel>
+                    </div>
+                    <div class="form-group">
+                        <label for="description"><span class='label'>Task Description</span>  (Must contains between 10 & 200 characters)</label>
+                        <input type="description" class="form-control" name="description" id="description" ngModel>
+                    </div>
+                    <button type='submit' class='btn btn-info' [disabled]='!form.valid'>Save</button>
+                </form>
+                <div class="alert alert-danger" *ngIf="errors">
+                    <p *ngFor="let error of errors">{{error}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-12" *ngFor='let task of tasks'>
+            <div *ngIf='!task.isDone'>
+                <div class="row border border-light task-container" (click)='onSelectTask(task._id)'>
+                    <div class="col-2"><img src="assets/todo.png" alt="todo image" class="rounded-circle"></div>
+                    <div class="col-3"><p class='task-name'>{{task.name}}</p></div>
+                    <div class="col-7"><p class='task-text'>{{ (task.description.length>150)? (task.description | slice:0:147)+'...':(task.description)}}</p></div>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>

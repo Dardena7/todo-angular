@@ -1,0 +1,12 @@
+.property, .label {
+    font-weight: bold;
+    color: rgb(48, 149, 167);
+}
+
+#edit-task {
+    margin-top: 20px;
+}
+
+.alert {
+    margin-top: 20px;
+}
